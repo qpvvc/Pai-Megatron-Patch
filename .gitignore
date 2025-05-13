@@ -4,3 +4,5 @@ LM-Evaluation-Harness*
 Bigcode-Evaluation-Harness*
 **/__pycache__
 .vscode
+examples/llama3/tp1_pp1_cp1_gbs512_ac_local.sh
+examples/llama3/nohup.out
