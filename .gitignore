@@ -3,3 +3,6 @@
 .vscode
 *.DS_Store
 .ipynb_checkpoints
+examples/llama3/tp1_pp1_cp1_gbs512_ac_local.sh
+examples/llama3/nohup.out
+examples/deepseek_v2/output_*
