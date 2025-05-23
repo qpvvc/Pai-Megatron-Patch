@@ -127,3 +127,38 @@ def build_dataset(args, train_val_test_num_samples):
     
     return train_dataset, val_dataset, test_dataset
 
+def build_pretrain_dataset_from_original(dataset):
+
+    args = get_args()
+    build_tokenizer(args)
+    if dataset == 'LLama-Pretrain-Raw':
+        train_dataset = LLamaRawDataset(args.train_data_path, args.max_padding_length)
+        #valid_dataset = LLamaRawDataset(args.valid_data_path, args.max_padding_length)
+        #test_dataset = LLamaRawDataset(args.test_data_path, args.max_padding_length)
+        # customize your validation and test dataset here
+
+        return train_dataset, train_dataset, train_dataset
+
+    elif dataset == 'LLava-Pretrain-Raw':
+        train_dataset = LLavaSupervisedDataset(args.train_data_path)
+        #valid_dataset = LLavaSupervisedDataset(args.valid_data_path)
+        #test_dataset = LLavaSupervisedDataset(args.test_data_path)
+
+        return train_dataset, train_dataset, train_dataset
+
+    elif dataset == 'ChatGLM-Pretrain-Raw':
+        train_dataset = ChatGLMRawDataset(args.train_data_path, args.source_seq_len, args.target_seq_len)
+        #valid_dataset = ChatGLMRawDataset(args.train_data_path, args.source_seq_len, args.target_seq_len)
+        #test_dataset = ChatGLMRawDataset(args.train_data_path, args.source_seq_len, args.target_seq_len)
+
+        return train_dataset, train_dataset, train_dataset
+
+    elif dataset == 'Starcoder-Pretrain-Raw':
+        train_dataset = StarcoderRawDataset(args.train_data_path, args.max_padding_length)
+        #valid_dataset = StarcoderRawDataset(args.train_data_path, args.max_padding_length)
+        #test_dataset = StarcoderRawDataset(args.train_data_path, args.max_padding_length)
+
+        return train_dataset, train_dataset, train_dataset
+
+    else:
+        raise NotImplementedError('dataset {} is not implemented.'.format(dataset))
